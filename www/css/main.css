@@ -3,7 +3,7 @@
 *
 {
 	color: var(--black);
-
+	overflow-x: hidden;
 }
 td
 {
@@ -46,7 +46,7 @@ label
 	float:left;
 	margin: 25px;
 	padding: 30px;
-	width: 50%;
+	width: 80%;
 	border-radius: 16px;
 	background: var(--wight);
 }

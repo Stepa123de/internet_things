@@ -10,10 +10,11 @@ document.getElementById('btn-login').onclick = function()
 	}
 	else if (login == 'admin' && password == 'admin')
 	{
+		localStorage.setItem('login', 'admin');
 		document.location = '../html/main.html';
 	}
 	else
 	{
-		alert('Incorrect login or password, try again.')
+		alert('Wrong login or password, try again.')
 	}
 }

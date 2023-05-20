@@ -6,19 +6,18 @@ function SetRow(element,row,last=false)
 	{
 		var td = document.createElement('td');
 		td.className = "td-table";
-		switch(row[i])
+		if (i == row.length-1 && row[i]!='Price')
 		{
-		case 'Active':
-			td.style.color = '#20f78c';//--light-green
-			break;
-		case 'Broken':
-			td.style.color = '#FF0000';//--dajer-red:
-			break;
-		case 'Disabled':
-			td.style.color = '#FFA500';
-			break;
+			var btn = document.createElement('button');
+			btn.className = "btn btn-success btn-pay";
+			btn.id = row[0];
+			btn.innerHTML = row[i];
+			td.append(btn);
 		}
-		td.innerHTML = row[i];
+		else
+		{
+			td.innerHTML = row[i];
+		}
 		tr.append(td);
 	}
 	if (last == true)  tr.style.background = 'none';
@@ -74,15 +73,16 @@ DrawCalandar(date,calendar,mainDate);
 var element = document.getElementById('table');
 
 //Get colums from sql
-var NameCol = ['Electric meter','Status','Readings','Price'];
+const NameCol = ['Electric meter','Description','Resource consumption','Price'];
 
 
 //Get over data from sql
-var row1 = ['00000000','Active',"34 kW⋅h\n23 kW⋅h\n65 kW⋅h",'8.29$']
-var row2 = ['00000001','Broken',"34 kW⋅h\n23 kW⋅h\n65 kW⋅h",'8.29$']
-var row3 = ['00000002','Active','34 kW⋅h\n23 kW⋅h\n65 kW⋅h','8.29$']
-var row4 = ['00000003','Disabled','34 kW⋅h\n23 kW⋅h\n65 kW⋅h','8.29$']
-var row5 = ['00000004','Active','34 kW⋅h\n23 kW⋅h\n65 kW⋅h','8.29$']
+var row1 = ['00000000','Сосиска большая и сочная Сосиска большая и сочная',"34 kW⋅h",'8.29$']
+var row2 = ['00000001','Сосиска большая и сочная Сосиска большая и сочная',"34 kW⋅h",'8.29$']
+var row3 = ['00000002','Сосиска большая и сочная Сосиска большая и сочная','34 kW⋅h','8.29$']
+var row4 = ['00000003','Сосиска большая и сочная Сосиска большая и сочная','34 kW⋅h','8.29$']
+var row5 = ['00000004','Сосиска большая и сочная Сосиска большая и сочная','34 kW⋅h','8.29$']
+var row6 = ['For all','Все большие сосиски в одном удобном месте','160 kW⋅h','36.56$']
 
 //add row in table
 SetRow(element,NameCol)
@@ -90,9 +90,17 @@ SetRow(element,row1)
 SetRow(element,row2)
 SetRow(element,row3)
 SetRow(element,row4)
-SetRow(element,row5,true)
+SetRow(element,row5)
+SetRow(element,row6,true)
 
 window.onload = function() {
+	// let promise = fetch('http://localhost:3000/api/meters');
+	// alert(promise.text());
+	// let login = localStorage.getItem('login');
+	// if (login == null)
+	// {
+	// 	document.location = '../html/login.html';
+	// }
 	document.getElementById('ritgh').onclick = function()
 	{
 		//del old dates
